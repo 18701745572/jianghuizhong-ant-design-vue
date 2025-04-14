@@ -1,0 +1,19 @@
+{
+  "name": "antd-vue-demo",
+  "version": "1.0.0",
+  "description": "Ant Design Vue 组件示例",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.7.8",
+    "core-js": "^3.8.3",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "vue-template-compiler": "^2.6.14"
+  }
+}
