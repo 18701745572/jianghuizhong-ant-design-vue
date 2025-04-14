@@ -33,6 +33,70 @@
         </div>
       </div>
 
+      <!-- 记住密码组件示例 -->
+      <div class="custom-selects-demo" style="margin-bottom: 24px">
+        <h3>记住密码组件</h3>
+        <div class="selects-row">
+          <div style="width: 300px; margin-right: 16px;">
+            <h4>浅色主题</h4>
+            <remember-password 
+              v-model="rememberLight"
+              theme="light"
+            />
+          </div>
+          <div style="width: 300px;">
+            <h4>蓝色主题</h4>
+            <remember-password 
+              v-model="rememberBlue"
+              theme="blue"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- 验证码组件示例 -->
+      <div class="custom-selects-demo" style="margin-bottom: 24px">
+        <h3>自定义验证码输入框</h3>
+        <div class="selects-row">
+          <div style="width: 300px; margin-right: 16px;">
+            <h4>浅色主题</h4>
+            <captcha-input 
+              v-model="captchaValue" 
+              @refresh="refreshCaptcha" 
+            />
+          </div>
+          <div style="width: 300px;">
+            <h4>蓝色主题</h4>
+            <captcha-input 
+              v-model="captchaValueBlue" 
+              theme="blue"
+              @refresh="refreshCaptcha" 
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- 忘记密码组件示例 -->
+      <div class="custom-selects-demo" style="margin-bottom: 24px">
+        <h3>忘记密码组件</h3>
+        <div class="selects-row">
+          <div style="width: 300px; margin-right: 16px;">
+            <h4>浅色主题</h4>
+            <forgot-password 
+              theme="light"
+              @click="handleForgotPassword"
+            />
+          </div>
+          <div style="width: 300px;">
+            <h4>蓝色主题</h4>
+            <forgot-password 
+              theme="blue"
+              @click="handleForgotPassword"
+            />
+          </div>
+        </div>
+      </div>
+
       <!-- 自定义密码输入框示例 -->
       <div class="custom-selects-demo" style="margin-bottom: 24px">
         <h3>自定义密码输入框</h3>
@@ -119,6 +183,9 @@ import SystemIcon from './components/SystemIcon.vue';
 import SelectDemo from './components/SelectDemo.vue';
 import PasswordInput from './components/PasswordInput.vue';
 import UsernameInput from './components/UsernameInput.vue';
+import RememberPassword from './components/RememberPassword.vue';
+import CaptchaInput from './components/CaptchaInput.vue';
+import ForgotPassword from './components/ForgotPassword.vue';
 
 export default {
   components: {
@@ -126,7 +193,10 @@ export default {
     SystemIcon,
     SelectDemo,
     PasswordInput,
-    UsernameInput
+    UsernameInput,
+    RememberPassword,
+    CaptchaInput,
+    ForgotPassword
   },
   data() {
     return {
@@ -134,6 +204,10 @@ export default {
       selectedSystem2: '',
       password: '',
       username: '',
+      rememberLight: false,
+      rememberBlue: false,
+      captchaValue: '',
+      captchaValueBlue: '',
       systemOptions: [
         { value: 'system1', label: '系统一' },
         { value: 'system2', label: '系统二' },
@@ -198,6 +272,13 @@ export default {
       this.data = this.data.filter(item => item.key !== key);
       this.$message.success('删除成功！');
     },
+    refreshCaptcha() {
+      this.$message.info('刷新验证码');
+      // 在实际应用中，这里可以调用API获取新的验证码
+    },
+    handleForgotPassword() {
+      this.$message.info('处理忘记密码逻辑');
+    }
   },
 };
 </script>
@@ -219,5 +300,12 @@ export default {
 .selects-row {
   display: flex;
   margin-top: 16px;
+}
+
+h4 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #28526B;
+  font-weight: 500;
 }
 </style> 

@@ -138,16 +138,33 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.custom-select-active {
+  background: linear-gradient(135deg, rgba(35, 136, 255, 0.5) 0%, rgba(0, 56, 255, 0.5) 100%);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
 .custom-select-hover .select-placeholder,
 .custom-select-hover .select-value,
-.custom-select-hover .arrow-icon:after {
+.custom-select-hover .arrow-icon:after,
+.custom-select-active .select-placeholder,
+.custom-select-active .select-value,
+.custom-select-active .arrow-icon:after {
   color: #ffffff;
   border-color: #ffffff;
 }
 
-/* 确保图标在悬停时变为白色 */
-.custom-select-hover :deep(.system-icon) {
+/* 确保图标在悬停和激活时变为白色 */
+.custom-select-hover :deep(.system-icon),
+.custom-select-active :deep(.system-icon) {
   color: #ffffff !important;
+}
+
+/* 兼容不使用插槽的默认图标 */
+.custom-select-hover .default-icon,
+.custom-select-active .default-icon {
+  background-color: #ffffff !important;
 }
 
 .select-trigger {
@@ -180,7 +197,8 @@ export default {
   transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
-.custom-select-hover .select-divider {
+.custom-select-hover .select-divider,
+.custom-select-active .select-divider {
   opacity: 1;
   background-color: rgba(255, 255, 255, 0.75);
 }
@@ -231,6 +249,8 @@ export default {
 
 .custom-select-active .arrow-icon:after {
   transform: rotate(45deg);
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
 }
 
 .select-dropdown {
@@ -241,8 +261,8 @@ export default {
   margin-top: 4px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  z-index: 10;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
   max-height: 200px;
   overflow-y: auto;
   border: 1px solid #DCE8F0;
