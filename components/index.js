@@ -148,6 +148,8 @@ import { default as Descriptions } from './descriptions';
 import { default as PageHeader } from './page-header';
 import { default as Space } from './space';
 
+import { default as CustomCard } from './custom-card';
+
 const components = [
   Base,
   Affix,
@@ -213,6 +215,7 @@ const components = [
   Descriptions,
   PageHeader,
   Space,
+  CustomCard,
 ];
 
 const install = function(Vue) {
@@ -304,6 +307,7 @@ export {
   Descriptions,
   PageHeader,
   Space,
+  CustomCard,
 };
 
 export default {

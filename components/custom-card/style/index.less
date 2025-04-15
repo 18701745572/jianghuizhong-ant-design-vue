@@ -1,0 +1,60 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@custom-card-prefix-cls: ~'@{ant-prefix}-custom-card';
+
+.@{custom-card-prefix-cls} {
+  .reset-component;
+  position: relative;
+  background: @component-background;
+  border-radius: @border-radius-base;
+  transition: all 0.3s;
+
+  &-bordered {
+    border: @border-width-base @border-style-base @border-color-split;
+  }
+
+  &-hoverable {
+    cursor: pointer;
+    &:hover {
+      box-shadow: @card-shadow;
+      border-color: @border-color-base;
+    }
+  }
+
+  &-loading {
+    overflow: hidden;
+    user-select: none;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: @border-width-base @border-style-base @border-color-split;
+    
+    .anticon {
+      margin-right: 8px;
+      font-size: 16px;
+    }
+  }
+
+  &-title {
+    flex: 1;
+    margin: 0;
+    color: @heading-color;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  &-content {
+    padding: 24px;
+  }
+
+  &-footer {
+    padding: 12px 24px;
+    border-top: @border-width-base @border-style-base @border-color-split;
+    background: @background-color-light;
+  }
+} 
