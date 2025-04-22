@@ -6,6 +6,8 @@
       <a-button type="link" @click="currentView = 'loginButtonDemo'">登录按钮演示</a-button>
       <a-button type="link" @click="currentView = 'rememberPasswordDemo'">记住密码演示</a-button>
       <a-button type="link" @click="currentView = 'captchaDemo'">验证码演示</a-button>
+      <a-button type="link" @click="currentView = 'navigationDemo'">导航组件演示</a-button>
+      <a-button type="link" @click="currentView = 'sideNavigationDemo'">侧边栏导航演示</a-button>
     </div>
     
     <!-- 动态组件显示 -->
@@ -291,6 +293,8 @@ import LoginButton from './components/LoginButton.vue';
 import LoginButtonDemo from './views/LoginButtonDemo.vue';
 import RememberPasswordDemo from './views/RememberPasswordDemo.vue';
 import CaptchaDemo from './views/CaptchaDemo.vue';
+import NavigationDemo from './views/NavigationDemo.vue';
+import SideNavigationDemo from './views/SideNavigationDemo.vue';
 
 export default {
   components: {
@@ -307,7 +311,9 @@ export default {
     LoginButton,
     LoginButtonDemo,
     RememberPasswordDemo,
-    CaptchaDemo
+    CaptchaDemo,
+    NavigationDemo,
+    SideNavigationDemo
   },
   data() {
     return {

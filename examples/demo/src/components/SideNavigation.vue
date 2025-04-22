@@ -1,0 +1,592 @@
+<template>
+  <div class="side-navigation" :class="{ collapsed: isCollapsed }" :style="sideNavStyle">
+    <div class="nav-header">
+      <slot name="logo">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="192.4599609375" height="32" viewBox="0 0 192.4599609375 32"><g><g><path d="M48.68,8L48.68,11.48L41.76,11.48L41.76,21.62L44.16,21.62L44.16,20.52L48.68,20.52L48.68,26.78L51.22,26.78L51.22,20.52L55.76,20.52L55.76,21.52L58.28,21.52L58.28,11.48L51.22,11.48L51.22,8L48.68,8ZM44.16,18.16L44.16,13.84L48.68,13.84L48.68,18.16L44.16,18.16ZM55.76,18.16L51.22,18.16L51.22,13.84L55.76,13.84L55.76,18.16ZM72.74000000000001,8.1C70.62,9.34,67.28,10.5,64.16,11.219999999999999C64.48,11.76,64.86,12.62,64.98,13.2C66.08,12.96,67.24,12.66,68.38,12.34L68.38,15.92L64.03999999999999,15.92L64.03999999999999,18.22L68.3,18.22C68.08,20.72,67.14,23.2,63.84,24.96C64.4,25.38,65.22,26.26,65.58,26.82C69.5,24.64,70.52,21.44,70.72,18.22L75.86,18.22L75.86,26.78L78.32,26.78L78.32,18.22L82.4,18.22L82.4,15.92L78.32,15.92L78.32,8.32L75.86,8.32L75.86,15.92L70.78,15.92L70.78,11.6C72.1,11.16,73.34,10.68,74.44,10.120000000000001L72.74000000000001,8.1ZM92.64,25.28C96.06,25.28,98.08,23.22,98.08,20.8C98.08,18.66,96.9,17.5,95.1,16.759999999999998L93.16,15.98C91.9,15.46,90.86,15.08,90.86,14.02C90.86,13.04,91.66,12.46,92.96000000000001,12.46C94.2,12.46,95.18,12.92,96.12,13.68L97.62,11.84C96.42,10.620000000000001,94.7,9.92,92.96000000000001,9.92C89.97999999999999,9.92,87.84,11.8,87.84,14.2C87.84,16.36,89.36,17.560000000000002,90.86,18.16L92.82,19.02C94.14,19.58,95.06,19.92,95.06,21.02C95.06,22.06,94.24000000000001,22.72,92.7,22.72C91.4,22.72,89.97999999999999,22.06,88.94,21.08L87.24000000000001,23.12C88.68,24.52,90.66,25.28,92.64,25.28ZM102,25L105,25L106.04,21.2L110.82,21.2L111.86,25L114.98,25L110.24,10.18L106.74,10.18L102,25ZM106.68,18.9L107.12,17.28C107.56,15.74,107.98,14.06,108.38,12.44L108.46,12.44C108.9,14.02,109.3,15.74,109.76,17.28L110.2,18.9L106.68,18.9ZM118.02,25L121.02,25L122.06,21.2L126.84,21.2L127.88,25L131,25L126.26,10.18L122.76,10.18L118.02,25ZM122.7,18.9L123.14,17.28C123.58,15.74,124,14.06,124.4,12.44L124.48,12.44C124.92,14.02,125.32,15.74,125.78,17.28L126.22,18.9L122.7,18.9ZM140.36,25.28C143.78,25.28,145.8,23.22,145.8,20.8C145.8,18.66,144.62,17.5,142.82,16.759999999999998L140.88,15.98C139.62,15.46,138.57999999999998,15.08,138.57999999999998,14.02C138.57999999999998,13.04,139.38,12.46,140.68,12.46C141.92000000000002,12.46,142.9,12.92,143.84,13.68L145.34,11.84C144.14,10.620000000000001,142.42000000000002,9.92,140.68,9.92C137.7,9.92,135.56,11.8,135.56,14.2C135.56,16.36,137.07999999999998,17.560000000000002,138.57999999999998,18.16L140.54000000000002,19.02C141.86,19.58,142.78,19.92,142.78,21.02C142.78,22.06,141.95999999999998,22.72,140.42000000000002,22.72C139.12,22.72,137.7,22.06,136.66,21.08L134.95999999999998,23.12C136.4,24.52,138.38,25.28,140.36,25.28ZM154.64,20.68C153.7,21.94,152.07999999999998,23.32,150.56,24.14C151.16,24.5,152.18,25.28,152.66,25.74C154.12,24.74,155.9,23.08,157.07999999999998,21.54L154.64,20.68ZM162.18,21.84C163.74,23,165.7,24.66,166.57999999999998,25.74L168.72,24.32C167.7,23.2,165.68,21.62,164.14,20.58L162.18,21.84ZM162.64,16.18C163,16.54,163.4,16.96,163.78,17.380000000000003L157.76,17.78C160.34,16.46,162.92000000000002,14.88,165.3,13.02L163.56,11.46C162.68,12.22,161.7,12.96,160.72,13.64L156.74,13.84C157.92000000000002,13,159.07999999999998,12.04,160.1,11.04C162.7,10.780000000000001,165.16,10.42,167.24,9.92L165.51999999999998,7.9399999999999995C162.14,8.76,156.56,9.26,151.64,9.440000000000001C151.88,9.98,152.16,10.940000000000001,152.22,11.54C153.68,11.5,155.22,11.42,156.76,11.32C155.72,12.28,154.68,13.04,154.26,13.3C153.66,13.72,153.2,14,152.74,14.06C152.98000000000002,14.66,153.3,15.68,153.4,16.119999999999997C153.86,15.94,154.51999999999998,15.84,157.66,15.62C156.36,16.4,155.26,16.98,154.66,17.240000000000002C153.4,17.880000000000003,152.62,18.22,151.84,18.34C152.07999999999998,18.939999999999998,152.42000000000002,20.04,152.51999999999998,20.46C153.18,20.2,154.07999999999998,20.06,158.68,19.68L158.68,24.12C158.68,24.34,158.57999999999998,24.4,158.24,24.42C157.9,24.42,156.68,24.42,155.64,24.38C156,25,156.4,26.02,156.51999999999998,26.72C158,26.72,159.12,26.7,160,26.34C160.88,25.96,161.12,25.34,161.12,24.18L161.12,19.5L165.26,19.16C165.76,19.82,166.2,20.44,166.5,20.96L168.38,19.8C167.57999999999998,18.52,165.94,16.64,164.44,15.24L162.64,16.18ZM186.62,18.1L186.62,23.76C186.62,25.78,187.04,26.46,188.84,26.46C189.16,26.46,189.88,26.46,190.22,26.46C191.76,26.46,192.28,25.56,192.46,22.4C191.86,22.24,190.9,21.86,190.44,21.44C190.38,24,190.3,24.44,189.98,24.44C189.84,24.44,189.42,24.44,189.3,24.44C189.02,24.44,188.98,24.38,188.98,23.74L188.98,18.1L186.62,18.1ZM182.84,18.119999999999997C182.72,21.52,182.46,23.64,179.4,24.92C179.92,25.36,180.58,26.3,180.86,26.9C184.52,25.22,185.04,22.34,185.2,18.119999999999997L182.84,18.119999999999997ZM173.68,23.64L174.24,26C176.18,25.26,178.64,24.3,180.9,23.36L180.46,21.32C177.96,22.22,175.38,23.14,173.68,23.64ZM184.6,8.48C184.88,9.14,185.2,9.98,185.4,10.620000000000001L180.94,10.620000000000001L180.94,12.76L184.08,12.76C183.26,13.86,182.28,15.1,181.92,15.46C181.46,15.86,180.88,16.04,180.44,16.14C180.66,16.64,181.06,17.86,181.16,18.439999999999998C181.82,18.14,182.82,18,189.64,17.28C189.92,17.82,190.16,18.3,190.32,18.72L192.34,17.66C191.8,16.4,190.52,14.52,189.46,13.12L187.62,14.04C187.94,14.46,188.26,14.94,188.56,15.44L184.62,15.78C185.34,14.86,186.18,13.76,186.9,12.76L192.12,12.76L192.12,10.620000000000001L186.6,10.620000000000001L187.88,10.26C187.68,9.66,187.24,8.66,186.88,7.92L184.6,8.48ZM174.22,16.740000000000002C174.52,16.58,174.98,16.46,176.56,16.259999999999998C175.96,17.14,175.44,17.8,175.16,18.1C174.52,18.84,174.1,19.28,173.56,19.4C173.84,20,174.22,21.14,174.34,21.62C174.86,21.28,175.7,21,180.5,19.92C180.42,19.4,180.42,18.46,180.48,17.8L177.7,18.36C178.96,16.82,180.18,15.04,181.14,13.3L179.04,12C178.7,12.7,178.32,13.42,177.94,14.08L176.48,14.2C177.6,12.64,178.66,10.719999999999999,179.4,8.940000000000001L176.96,7.82C176.28,10.1,175,12.54,174.58,13.16C174.14,13.8,173.8,14.22,173.36,14.34C173.66,15.02,174.08,16.240000000000002,174.22,16.740000000000002Z" fill="#FFFFFF" fill-opacity="1"/></g><g><g><g><path d="M26.723683072662354,15.648191446685791C26.723683072662354,13.630171446685791,26.183583072662355,11.739351446685792,25.241583072662355,10.109751446685792C23.664783072662352,7.383831446685791,20.95778307266235,5.391503446685791,17.762183072662353,4.774314446685791C17.077383072662354,4.641672646685791,16.37088307266235,4.571291446685791,15.648083072662354,4.571291446685791C14.925323072662353,4.571291446685791,14.217453072662353,4.641672646685791,13.533943072662353,4.774314446685791C10.338363072662354,5.392856446685791,7.631393072662354,7.383831446685791,6.0545830726623535,10.109751446685792C6.0545830726623535,10.109751446685792,13.533943072662353,10.109751446685792,13.533943072662353,10.109751446685792C13.533943072662353,10.109751446685792,17.763583072662353,10.109751446685792,17.763583072662353,10.109751446685792C17.763583072662353,10.109751446685792,17.763583072662353,15.648191446685791,17.763583072662353,15.648191446685791C17.763583072662353,15.648191446685791,26.723683072662354,15.648191446685791,26.723683072662354,15.648191446685791Z" fill="#FFFFFF" fill-opacity="1"/></g><g><path d="M17.762406705474852,21.186809285125733C17.762406705474852,21.186809285125733,13.532736705474854,21.186809285125733,13.532736705474854,21.186809285125733C13.532736705474854,21.186809285125733,13.532736705474854,15.648349285125732,13.532736705474854,15.648349285125732C13.532736705474854,15.648349285125732,4.5713067054748535,15.648349285125732,4.5713067054748535,15.648349285125732C4.5713067054748535,17.66639928512573,5.111346705474854,19.557209285125733,6.053376705474854,21.186809285125733C7.630186705474854,23.91272928512573,10.337156705474854,25.905049285125735,13.532736705474854,26.52224928512573C14.217596705474854,26.654849285125735,14.924106705474854,26.725249285125734,15.646906705474853,26.725249285125734C16.36960670547485,26.725249285125734,17.077506705474853,26.654849285125735,17.761006705474855,26.52224928512573C20.956606705474854,25.903749285125734,23.663606705474855,23.91272928512573,25.240406705474854,21.186809285125733C25.240406705474854,21.186809285125733,17.762406705474852,21.186809285125733,17.762406705474852,21.186809285125733Z" fill="#FFFFFF" fill-opacity="1"/></g><g style="opacity:0.75;"><path d="M17.762494557037353,10.109883785247803C17.762494557037353,10.109883785247803,13.532854557037354,15.648343785247803,13.532854557037354,15.648343785247803C13.532854557037354,15.648343785247803,13.532854557037354,21.186783785247805,13.532854557037354,21.186783785247805C13.532854557037354,21.186783785247805,17.762494557037353,15.648343785247803,17.762494557037353,15.648343785247803C17.762494557037353,15.648343785247803,17.762494557037353,10.109883785247803,17.762494557037353,10.109883785247803Z" fill="#FFFFFF" fill-opacity="1"/></g></g></g></g></svg>
+        </div>
+      </slot>
+      
+      <div class="toggle-button" @click="toggleCollapse">
+        <div class="toggle-icon" :class="{ 'toggle-icon-collapsed': isCollapsed }">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="nav-menu">
+      <div 
+        v-for="(item, index) in menuItems" 
+        :key="item.key || index"
+        class="menu-item"
+        :class="{ active: activeKey === item.key || (item.children && item.children.some(child => child.key === activeKey)) }"
+      >
+        <div class="menu-content" @click="handleMenuClick(item)">
+          <div class="menu-icon">
+            <i class="anticon" v-if="item.icon">
+              <component :is="getIconComponent(item.icon)" />
+            </i>
+            <span class="icon-placeholder" v-else></span>
+          </div>
+          <div class="menu-label" v-show="!isCollapsed">{{ item.label }}</div>
+          <div class="arrow-icon" v-if="item.children && item.children.length && !isCollapsed">
+            <i :class="{'arrow-down': expandedKeys.includes(item.key), 'arrow-right': !expandedKeys.includes(item.key)}"></i>
+          </div>
+        </div>
+        
+        <!-- 二级菜单 -->
+        <div class="submenu" v-if="item.children && item.children.length && !isCollapsed" v-show="expandedKeys.includes(item.key)">
+          <div 
+            v-for="(subItem, subIndex) in item.children" 
+            :key="subItem.key || subIndex"
+            class="submenu-item"
+            :class="{ active: activeKey === subItem.key }"
+            @click="handleSubMenuClick(subItem, item)"
+          >
+            <div class="submenu-label">{{ subItem.label }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+// 图标组件
+const HomeIcon = {
+  name: 'HomeIcon',
+  render(h) {
+    return h('svg', {
+      attrs: {
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+        fill: 'currentColor'
+      }
+    }, [
+      h('path', {
+        attrs: {
+          d: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'
+        }
+      })
+    ]);
+  }
+};
+
+const UserIcon = {
+  name: 'UserIcon',
+  render(h) {
+    return h('svg', {
+      attrs: {
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+        fill: 'currentColor'
+      }
+    }, [
+      h('path', {
+        attrs: {
+          d: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'
+        }
+      })
+    ]);
+  }
+};
+
+const ProjectIcon = {
+  name: 'ProjectIcon',
+  render(h) {
+    return h('svg', {
+      attrs: {
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+        fill: 'currentColor'
+      }
+    }, [
+      h('path', {
+        attrs: {
+          d: 'M3,3h18v18h-18z'
+        }
+      })
+    ]);
+  }
+};
+
+const FileIcon = {
+  name: 'FileIcon',
+  render(h) {
+    return h('svg', {
+      attrs: {
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+        fill: 'currentColor'
+      }
+    }, [
+      h('path', {
+        attrs: {
+          d: 'M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'
+        }
+      })
+    ]);
+  }
+};
+
+const AuditIcon = {
+  name: 'AuditIcon',
+  render(h) {
+    return h('svg', {
+      attrs: {
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+        fill: 'currentColor'
+      }
+    }, [
+      h('path', {
+        attrs: {
+          d: 'M11.8,10.9c-2.27-0.59-3-1.2-3-2.15c0-1.09,1.01-1.85,2.7-1.85c1.78,0,2.44,0.85,2.5,2.1h2.21 c-0.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94,0.42-3.5,1.68-3.5,3.61c0,2.31,1.91,3.46,4.7,4.13c2.5,0.6,3,1.48,3,2.41 c0,0.69-0.49,1.79-2.7,1.79c-2.06,0-2.87-0.92-2.98-2.1H6.3c0.13,2.19,1.76,3.42,3.68,3.83V21h3v-2.15 c1.95-0.37,3.5-1.5,3.5-3.55C16.5,12.46,14.07,11.49,11.8,10.9z'
+        }
+      })
+    ]);
+  }
+};
+
+const TeamIcon = {
+  name: 'TeamIcon',
+  render(h) {
+    return h('svg', {
+      attrs: {
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+        fill: 'currentColor'
+      }
+    }, [
+      h('path', {
+        attrs: {
+          d: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z'
+        }
+      })
+    ]);
+  }
+};
+
+const MessageIcon = {
+  name: 'MessageIcon',
+  render(h) {
+    return h('svg', {
+      attrs: {
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+        fill: 'currentColor'
+      }
+    }, [
+      h('path', {
+        attrs: {
+          d: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-4H6V9h12v2zm0-3H6V6h12v2z'
+        }
+      })
+    ]);
+  }
+};
+
+const SettingIcon = {
+  name: 'SettingIcon',
+  render(h) {
+    return h('svg', {
+      attrs: {
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+        fill: 'currentColor'
+      }
+    }, [
+      h('path', {
+        attrs: {
+          d: 'M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z'
+        }
+      })
+    ]);
+  }
+};
+
+export default {
+  name: 'SideNavigation',
+  props: {
+    width: {
+      type: Number,
+      default: 240
+    },
+    collapsedWidth: {
+      type: Number,
+      default: 64
+    },
+    menuItems: {
+      type: Array,
+      default: () => [
+        { key: 'home', label: '首页', icon: 'home' },
+        { 
+          key: 'customer', 
+          label: '客户中心', 
+          icon: 'user',
+          children: [
+            { key: 'customer-list', label: '客户列表' },
+            { key: 'customer-manage', label: '客户管理' }
+          ] 
+        },
+        { 
+          key: 'project', 
+          label: '项目中心', 
+          icon: 'project',
+          children: [
+            { key: 'project-list', label: '项目列表' },
+            { key: 'project-manage', label: '项目管理' }
+          ]
+        },
+        { key: 'contract', label: '合同中心', icon: 'file' },
+        { key: 'approval', label: '审核中心', icon: 'audit' },
+        { key: 'employee', label: '员工中心', icon: 'team' },
+        { key: 'message', label: '消息中心', icon: 'message' },
+        { key: 'setting', label: '系统配置', icon: 'setting' }
+      ]
+    },
+    defaultActive: {
+      type: String,
+      default: 'home'
+    },
+    defaultOpenKeys: {
+      type: Array,
+      default: () => []
+    },
+    defaultCollapsed: {
+      type: Boolean,
+      default: false
+    },
+    background: {
+      type: [String, Object],
+      default: null,
+      /**
+       * 背景配置，支持以下格式：
+       * 1. 颜色值：'#0a3d9d'
+       * 2. 渐变：'linear-gradient(180deg, #0a3d9d 0%, #0264c8 100%)'
+       * 3. 图片URL：'https://example.com/bg.jpg'
+       * 4. 对象形式：
+       *    {
+       *      backgroundImage: 'url(path/to/image.jpg)',
+       *      backgroundSize: 'cover',
+       *      backgroundPosition: 'center'
+       *    }
+       * 默认为蓝色渐变背景
+       */
+    }
+  },
+  components: {
+    HomeIcon,
+    UserIcon,
+    ProjectIcon,
+    FileIcon,
+    AuditIcon,
+    TeamIcon,
+    MessageIcon,
+    SettingIcon
+  },
+  data() {
+    return {
+      activeKey: this.defaultActive,
+      expandedKeys: [],
+      isCollapsed: this.defaultCollapsed
+    };
+  },
+  computed: {
+    sideNavStyle() {
+      const style = {
+        width: this.isCollapsed ? `${this.collapsedWidth}px` : `${this.width}px`
+      };
+      
+      if (this.background) {
+        if (typeof this.background === 'string') {
+          // 如果是颜色值或渐变
+          if (this.background.includes('url(')) {
+            style.background = this.background;
+          } else if (this.background.startsWith('#') || this.background.startsWith('rgb') || this.background.startsWith('linear-gradient')) {
+            style.background = this.background;
+          } else {
+            // 假设是图片URL
+            style.backgroundImage = `url(${this.background})`;
+            style.backgroundColor = '#003B93';
+            style.backgroundSize = 'cover';
+            style.backgroundPosition = 'center';
+          }
+        } else if (typeof this.background === 'object') {
+          // 如果是对象，直接合并到style中
+          Object.assign(style, this.background);
+        }
+      } else {
+        // 默认渐变背景
+        style.background = 'linear-gradient(180deg, #0a3d9d 0%, #0264c8 100%)';
+      }
+      
+      return style;
+    }
+  },
+  methods: {
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
+      this.$emit('collapse-change', this.isCollapsed);
+    },
+    handleMenuClick(item) {
+      if (this.isCollapsed && item.children && item.children.length) {
+        // 如果是折叠状态并且有子菜单，触发切换折叠状态
+        this.toggleCollapse();
+        // 展开当前点击的菜单
+        if (!this.expandedKeys.includes(item.key)) {
+          this.expandedKeys.push(item.key);
+        }
+        return;
+      }
+      
+      if (item.children && item.children.length) {
+        // 如果有子菜单，切换展开状态
+        const index = this.expandedKeys.indexOf(item.key);
+        if (index > -1) {
+          this.expandedKeys.splice(index, 1);
+        } else {
+          this.expandedKeys.push(item.key);
+        }
+        
+        // 如果菜单收起，且当前激活项是其子项，则激活该父菜单
+        if (index > -1 && item.children.some(child => child.key === this.activeKey)) {
+          this.activeKey = item.key;
+          this.$emit('menu-click', item);
+        }
+      } else {
+        // 没有子菜单，直接激活
+        this.activeKey = item.key;
+        this.$emit('menu-click', item);
+      }
+    },
+    handleSubMenuClick(subItem, parentItem) {
+      this.activeKey = subItem.key;
+      this.$emit('menu-click', subItem, parentItem);
+    },
+    getIconComponent(icon) {
+      const iconMap = {
+        'home': 'HomeIcon',
+        'user': 'UserIcon',
+        'project': 'ProjectIcon',
+        'file': 'FileIcon',
+        'audit': 'AuditIcon',
+        'team': 'TeamIcon',
+        'message': 'MessageIcon',
+        'setting': 'SettingIcon'
+      };
+      return iconMap[icon] || '';
+    }
+  }
+};
+</script>
+
+<style scoped>
+.side-navigation {
+  height: 100vh;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  transition: width 0.3s ease;
+}
+
+.side-navigation.collapsed {
+  overflow: visible;
+}
+
+.nav-header {
+  padding: 20px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.nav-menu {
+  padding: 12px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-content {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 68px;
+  box-sizing: border-box;
+}
+
+.menu-item:hover .menu-content {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.active .menu-content {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.menu-label {
+  font-size: 16px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-right:before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.arrow-down:before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 4px 0 4px;
+  border-color: #fff transparent transparent transparent;
+}
+
+.submenu {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.submenu-item {
+  display: flex;
+  align-items: center;
+  padding: 0 20px 0 56px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.submenu-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.submenu-label {
+  font-size: 14px;
+}
+
+.anticon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  font-size: 24px;
+}
+
+.toggle-button {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-icon {
+  width: 16px;
+  height: 14px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.toggle-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+
+.toggle-icon-collapsed span:nth-child(1) {
+  transform: rotate(45deg) translate(3px, 3px);
+}
+
+.toggle-icon-collapsed span:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle-icon-collapsed span:nth-child(3) {
+  transform: rotate(-45deg) translate(3px, -3px);
+}
+
+.collapsed .menu-content {
+  justify-content: center;
+  padding: 0;
+}
+
+.collapsed .menu-icon {
+  margin-right: 0;
+}
+
+.side-navigation.collapsed .logo-container svg {
+  width: 32px;
+  overflow: hidden;
+}
+</style> 
