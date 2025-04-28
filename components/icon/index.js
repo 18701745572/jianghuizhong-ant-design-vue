@@ -15,10 +15,13 @@ import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import { getTwoToneColor, setTwoToneColor } from './twoTonePrimaryColor';
 import { filterEmpty, getListeners } from '../_util/props-util';
 import Base from '../base';
+import adddednOutlined from './custom/adddenOutlined.vue';
+
 
 // Initial setting
 VueIcon.add(...Object.keys(allIcons).map(key => allIcons[key]));
 setTwoToneColor('#1890ff');
+VueIcon.add({ adddednOutlined });
 const defaultTheme = 'outlined';
 let dangerousTheme;
 
